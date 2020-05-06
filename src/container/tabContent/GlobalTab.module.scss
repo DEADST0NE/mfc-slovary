@@ -1,0 +1,35 @@
+.tableEmployees{ 
+    border: 1px solid;
+    width: 100%;
+    
+    
+    td{  
+        padding: 10px;
+        border: 1px solid;
+        text-align: center;
+        font-size: 20px;
+    }
+    thead{
+        td{
+            font-weight: 500;
+            font-size: 25px;
+        }
+    }
+    tbody{
+        tr{
+            td:last-child{ 
+                svg:last-child{ 
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+.searchBLeft{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    .inputGroup{
+        width: 80%;
+    }
+}

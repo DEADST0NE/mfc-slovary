@@ -1,0 +1,37 @@
+.employeesAccount{
+    display: flex;
+    background-color: #ddd !important;
+    width: 100%;  
+    padding: 50px 30px 50px 30px;
+    .accountSidebar{
+        background-color: #ffffff; 
+        padding: 20px 0px;
+        .nav{  
+            margin-top: 20px;
+                .nav-item{
+                    a{
+                        color: black;
+                        border-bottom: 1px solid #ddd !important;
+                        &.active{
+                            background-color: rgb(252, 252, 252) !important;
+                            border-left: 2px solid #ed5338 !important;
+                        } 
+                        &:hover{
+                            color: #ed5338 !important;
+                        }
+                        a:last-child{
+                            border-bottom: none;
+                        }
+                    }
+                } 
+            }
+    }
+    .foto{
+        padding: 20px 0px;
+        display: flex;
+        justify-content: center;
+        .svg{
+            fill:  #ddd
+        }
+    }
+}
