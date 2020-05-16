@@ -16,7 +16,7 @@ const Sidebar = () => {
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </button> 
             <nav className={s.sidebarNav} > 
                     <ul>
                         <li> 

@@ -6,14 +6,10 @@ import Modal from 'react-bootstrap/Modal';
 import { connect } from 'react-redux'; 
 import InputMask from 'react-input-mask';
 import { Formik } from 'formik';  
-import * as Yup from 'yup';
-import Spinner from 'react-bootstrap/Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import * as Yup from 'yup'; 
 
-import Error from '../../../Error';
-import { putOffices } from '../../../../redux/offices/putOffices/actions'; 
-import ErrorText from '../../../../components/ErrorsTest';
+import { putOffices } from '../../../../redux/form/putOffices/actions'; 
+import ErrorText from '../../../../component/ErrorsText';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -22,7 +18,7 @@ const validationSchema = Yup.object().shape({
     smallName: Yup.string().required('Обязательное поле'),
 })
 
-const PutOfficesForm = ({ id, onClose, putOffices, loading, error, success }) => {  
+const PutOfficesForm = ({ id, onClose, putOffices }) => {  
 
     return (   
         <Formik 
@@ -73,29 +69,6 @@ const PutOfficesForm = ({ id, onClose, putOffices, loading, error, success }) =>
                 isSubmitting 
             }) => 
                 {
-                    if(loading){
-                        return (
-                            <div className={s.statusBlock}>
-                                <Spinner animation="border" className={s.spiner} />
-                            </div>
-                        )
-                    }
-                    if(error){
-                        setTimeout(onClose,2000)
-                        return (
-                            <div className={s.statusBlock}>
-                                <Error />
-                            </div>
-                        )
-                    }
-                    if(success){
-                        setTimeout(onClose,2000)
-                        return (
-                            <div className={s.statusBlock}>
-                                <FontAwesomeIcon icon={ faCheckCircle } />
-                            </div>
-                        )
-                    }
                     return(
                         <form onSubmit={ handleSubmit } className={s.forms}>
                             <Modal.Body> 
@@ -708,15 +681,8 @@ const PutOfficesForm = ({ id, onClose, putOffices, loading, error, success }) =>
     )
 }
 
-
-const mapStateToProps = (state) => ({ 
-    loading: state.putOffices.loading,
-    error: state.putOffices.error,
-    success: state.putOffices.success, 
-})  
-    
 const mapDispatchToProps = { 
     putOffices,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PutOfficesForm);
+export default connect( () => ({}), mapDispatchToProps)(PutOfficesForm);

@@ -1,0 +1,22 @@
+.confirmationForm{ 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .img{
+        display: flex;
+        justify-content: center;
+        svg{
+            color: #d3531a;
+            font-size: 100px; 
+        }
+    }
+    p{
+        text-align: center;
+        font-size: 25px;
+
+    }
+    .buttonBlock{
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

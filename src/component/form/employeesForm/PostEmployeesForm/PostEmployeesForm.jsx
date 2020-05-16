@@ -1,21 +1,17 @@
-import React from 'react';
+import React from 'react'; 
 import Form from 'react-bootstrap/Form';
 import { Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Formik, getIn } from 'formik';
-import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux'; 
 import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
-import Spinner from 'react-bootstrap/Spinner';
 
-import FormFileFotoUpload from '../../../../components/FormFileFotoUpload';
-import DatePickerField from '../../../../components/DatePickerField';
-import Error from '../../../Error';
-import { postEmployee } from '../../../../redux/employees/postEmployees/actions';
-import ErrorText from '../../../../components/ErrorsTest';
+import FormFileFotoUpload from '../../../../container/FormFileFotoUpload';
+import DatePickerField from '../../../../component/DatePickerField'; 
+import { postEmployees } from '../../../../redux/form/postEmployees/actions'; 
+import ErrorText from '../../../../component/ErrorsText';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -42,8 +38,7 @@ const validationSchema = Yup.object().shape({
     }),
 })
 
-const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, offices, positions }) => {
-
+const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => { 
     return (
         <Formik
             initialValues={{
@@ -88,7 +83,7 @@ const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, off
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
                 console.log(values);
-                postEmployee(values);
+                postEmployees(values);
             }}
         >
             {({ values,
@@ -100,29 +95,6 @@ const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, off
                 isSubmitting,
                 setFieldValue
             }) => {
-                if (loading) {
-                    return (
-                        <div className={s.statusBlock}>
-                            <Spinner animation="border" className={s.spiner} />
-                        </div>
-                    )
-                }
-                if (error) {
-                    setTimeout(onClose, 2000)
-                    return (
-                        <div className={s.statusBlock}>
-                            <Error />
-                        </div>
-                    )
-                }
-                if (success) {
-                    setTimeout(onClose, 2000)
-                    return (
-                        <div className={s.statusBlock}>
-                            <FontAwesomeIcon icon={faCheckCircle} />
-                        </div>
-                    )
-                } 
                 return (
                     <form onSubmit={handleSubmit} className={s.forms}>
                         <Modal.Body>
@@ -381,7 +353,7 @@ const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, off
                                     </Col>
                                     <Col sm="6">
                                         <InputMask
-                                            type="number"
+                                            type="text"
                                             className={`form-control ${getIn(errors, 'passport.snils') && getIn(touched, 'passport.snils') ? s.inputError : null}`}
                                             placeholder="СНИЛС"
                                             name='snils'
@@ -402,7 +374,7 @@ const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, off
                                     </Col>
                                     <Col sm="6">
                                         <InputMask
-                                            type="number" 
+                                            type="text" 
                                             className={`form-control ${getIn(errors, 'passport.inn') && getIn(touched, 'passport.inn') ? s.inputError : null}`}
                                             placeholder="ИНН"
                                             name='inn'
@@ -777,15 +749,12 @@ const PostEmployeesForm = ({ onClose, postEmployee, loading, error, success, off
 
 
 const mapStateToProps = (state) => ({
-    loading: state.postEmployees.loading,
-    error: state.postEmployees.error,
-    success: state.postEmployees.success,
     offices: state.getOffices.data,
     positions: state.getPosition.data,
 })
 
 const mapDispatchToProps = {
-    postEmployee,
+    postEmployees,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostEmployeesForm);
+export default connect(mapStateToProps, mapDispatchToProps)(postEmployeesForm);

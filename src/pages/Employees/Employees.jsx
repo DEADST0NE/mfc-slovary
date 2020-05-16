@@ -3,14 +3,14 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 import './Employess.scss'; 
-import TabJobPositions from '../../container/tabContent/TabContentJobPositions';
-import TabContentSalaries from '../../container/tabContent/TabContentSalaries';
-import TabContentOffices from '../../container/tabContent/TabContentOffices';
-import TabContentEmployees from '../../container/tabContent/TabContentEmployees';
+import TabContentPositions from '../../container/employeesTabContent/TabContentPositions';
+import TabContentSalaries from '../../container/employeesTabContent/TabContentSalaries';
+import TabContentOffices from '../../container/employeesTabContent/TabContentOffices';
+import TabContentEmployees from '../../container/employeesTabContent/TabContentEmployees';
 
 const Employees = () => {
 
-    const [key, setKey] = useState('offices');
+    const [key, setKey] = useState('employees');
 
     return (
             <div className='employees'>
@@ -26,7 +26,7 @@ const Employees = () => {
                         <TabContentOffices />
                     </Tab>
                     <Tab eventKey="position" title="Должности" > 
-                        <TabJobPositions />
+                        <TabContentPositions />
                     </Tab>
                     <Tab eventKey="salaries" title="Оклады" > 
                         <TabContentSalaries />

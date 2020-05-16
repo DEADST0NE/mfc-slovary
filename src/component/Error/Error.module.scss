@@ -1,10 +1,14 @@
-.contetError{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.contetError svg {
-    width: 500px;
+.contetError{
+    margin-top: 100px;
+    text-align: center;  
+    width: 100%;
+    svg { 
+        font-size: 150px;
+        color: rgba(231, 48, 48, 0.562);
+    }
+    p{
+        padding-top: 30px;
+        width: 40%;
+        margin: 0 auto;
+    }
 }

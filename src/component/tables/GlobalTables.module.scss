@@ -1,12 +1,11 @@
-.tableEmployees{
-    margin-top: 20px;
-    border: 1px solid;
-    width: 100%; 
+.tableGlobal{
+    max-height: 650px;
+    overflow-y: auto;
     td{  
         padding: 10px;
-        border: 1px solid;
-        text-align: center;
         font-size: 20px;
+        text-align: center;
+        vertical-align:middle;
         a{
             color: black;
             &:hover{
@@ -16,27 +15,40 @@
         }
     }
     thead{ 
-        td{ 
+        td{   
             font-weight: 500;
             font-size: 25px;
-            height: 75px;
-            font-family: 'Roboto', sans-serif;
+            height: 75px; 
+            font-family: 'Roboto', sans-serif; 
+            position: sticky; 
             svg{
                 cursor: pointer;
                 color: #ddd;
+                transition: all 0.3s ease;
                 &:hover{
                     color: #d3531a;
                 }
             }
         }
     }
-    tbody{
+    tbody{ 
         tr{
             td:last-child{ 
                 svg:last-child{ 
                     margin-left: 20px;
                 }
-            }
+            } 
+            .act{
+                svg{
+                    color: rgb(102, 102, 102);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+
+                    &:hover{
+                        color: #d3531a;
+                    }
+                }
+            }  
         }
     }
 }

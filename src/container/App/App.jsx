@@ -5,7 +5,7 @@ import Header from '../../component/Header';
 import Sidebar from '../../component/Sidebar';
 import Employees from '../../pages/Employees/';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import PersonalArea from '../../pages/PersonalArea';
 import s from './App.module.scss'
 const App = () => {
   return (
@@ -15,6 +15,8 @@ const App = () => {
           <div className={s.conteiner}>
             <Sidebar />
             <Route exact path="/" component={ () => <Employees/> }/> 
+            <Route path="/PersonalArea" 
+              component={ (props) => <PersonalArea {...props}/> }/>
           </div> 
       </BrowserRouter>
     </>

@@ -1,12 +1,16 @@
-.sidebar{ 
-    padding-top: 20px; 
+.sidebar{  
     border-right: 1px solid #ddd;
+
+    hr{
+        margin: 0;
+    }
+
     button{
+        margin: 19px 15px 6px 15px;//19
         width: 30px;
         height: 30px;
         border: 0;
-        background-color: rgba(0, 0, 0, 0);
-        padding: 0;
+        background-color: rgba(0, 0, 0, 0); 
         margin-left: 20px;
         outline: none; 
         position: relative;

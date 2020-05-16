@@ -1,36 +1,23 @@
-import React, {useState} from 'react'; 
-//import {connect} from 'react-redux'; 
+import React, {useState} from 'react';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faPlay, faPause, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Table from 'react-bootstrap/Table'
 
-import { filter } from '../../../components/Filter';
-//import ModalWindow from '../../../сomponent/ModalWindow';
-import StatusSvg from '../../../components/StatusSvg';
-//import PutEmployeesForm from '../../form/employeesForm/PutEmployeesForm';
-//import { putEmployee, getEmployee } from '../../../redux/employee/actions';
+import { filter } from '../../../utils/filter';
+import ConfirmationsForm from '../../form/ConfirmationsForm';
+import ModalWindow from '../../../component/ModalWindow'; 
+import StatusSvg from '../../../component/StatusSvg'; 
 import s from '../GlobalTables.module.scss';
 
 const TablesEmployees = ({ mass, loading, error, foto }) => {
     const [ sortUpDown, setSortUpDown ] = useState(false);//Индикатор сортировки
-    //const [showModalPutEmployee, setShowModalPutEmployee] = useState(false);//Индикатор отображения модального окна
-    //const [putIdEmployee, setputIdEmployee] = useState(null);//id сотрудника
-
-    //const modificationEmployees = (object) => {//Изменение даных сотрудника 
-    //    object.Foto = foto;//Передаем в своество обьекта.Фото = Фото-'Из Store'
-    //    putEmployee(object, putIdEmployee);
-    //    setShowModalPutEmployee(false); 
-    //}
-
-    //const openModalPutEmployees = (id) => {//Открывает модальное окно изменения должности 
-    //    getEmployee(id);
-    //    setputIdEmployee(id);
-    //    setShowModalPutEmployee(true);
-    //} 
+    const [ showModalDeleteOffices, setShowModalDeleteOffices ] = useState(false); //Индикатор отображения модального окна
 
     return (
         <>
-            <table className={s.tableEmployees}> 
+        <div className={s.tableGlobal}>
+            <Table responsive="xl" striped bordered>  
                 <thead>
                     <tr>
                         <td>Филиалы <FontAwesomeIcon icon={ faFilter } onClick={ () => {  filter(mass, 'officeName', sortUpDown, setSortUpDown) } }/></td>
@@ -51,45 +38,34 @@ const TablesEmployees = ({ mass, loading, error, foto }) => {
                                 <td><StatusSvg id={ item.employeeStatusId } /></td>
                                 <td>{ item.employeeIsActiv ? <FontAwesomeIcon icon={ faPlay } color='green'/> 
                                                             : <FontAwesomeIcon icon={ faPause } color='red'/> }</td>
-                                <td>
+                                <td className={s.act}>
                                     <Link  to={{
-                                        pathname: '/EmployeesAccount',
+                                        pathname: '/PersonalArea',
                                         state: { id: item.employeeId }
                                     }}> 
                                         <FontAwesomeIcon icon={ faEye } /> 
                                     </Link> 
-                                    <FontAwesomeIcon icon={ faTrash } />
+                                    <FontAwesomeIcon onClick={ () => { setShowModalDeleteOffices(true) } } icon={ faTrash } />
                                 </td> 
                             </tr>  
                         ))
                     }
                 </tbody>
-            </table>
+            </Table>
+        </div>
             
+            <ModalWindow 
+                size='lm'
+                show={showModalDeleteOffices}
+                title='Удаление сотрудника'
+                onClose={ () => setShowModalDeleteOffices(false) }
+                body={
+                        <ConfirmationsForm onClose={ () => setShowModalDeleteOffices(false) } />
+                    }
+            /> 
+
         </>
     )
 }
-//onClick={ ()=>{ openModalPutEmployees(item.employeeId) } }
-//<ModalWindow 
-//    size='xl'
-//    show={showModalPutEmployee}
-//    title='Изменение данных сотрудника'
-//    onClose={ () => setShowModalPutEmployee(false) }
-//    body={
-//            <PutEmployeesForm loadingStatus={false} errorStatus={false} onClose={ () => setShowModalPutEmployee(false) } 
-//            onSubmit={ (formData) => modificationEmployees(formData) }/>
-//    }
-///>
-//const mapStateToProps = (state) => ({ 
-//    loading: state.employee.loading,
-//    error: state.employee.error,
-//    foto: state.fotoFile.file,
-//})  
-    
-//const mapDispatchToProps = { 
-//    getEmployee,
-//    putEmployee,
-//}
 
-//export default connect(mapStateToProps, mapDispatchToProps)(TablesEmployees);
 export default TablesEmployees;

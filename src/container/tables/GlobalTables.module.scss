@@ -1,0 +1,29 @@
+.tablePersonalArea{
+    padding: 50px 20px 50px 20px;
+    background-color: #fff; 
+    border-radius: 5px;
+    table{ 
+        td{
+            text-align: center;
+            vertical-align:middle;
+        }
+        thead{
+            td{
+                background-color: #fff;
+                font-size: 20px;
+                padding: 10px;
+            }
+        } 
+    } 
+}
+
+.noneData{ 
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(231, 169, 53, 0.726);
+    p{
+        color: rgb(0, 0, 0);
+        font-size: 17px;
+        margin-bottom: 0px;
+    } 
+}

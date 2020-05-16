@@ -1,39 +1,29 @@
 import { combineReducers } from 'redux';
 
-import reducerGetPosition from './jobPosition/getPosition/reduser';
-import reducerPostPosition from './jobPosition/postPosition/reduser';
-import reducerPutPosition from './jobPosition/putPosition/reduser';
-
-import reducerGetSalaries from './jobSalaries/getSalaries/reduser'; 
-import reducerPostSalaries from './jobSalaries/postSalaries/reduser';
-
-import reducerGetOffices from './offices/getOffices/reduser';
-import reducerPostOffices from './offices/postOffices/reduser';
-import reducerPutOffices from './offices/putOffices/reduser';
-
-import reducerGetEmployees from './employees/getEmployees/reduser';
-import reducerPostEmployees from './employees/postEmployees/reduser';
-
-import reducerFileFoto from './fileFoto/reduser'; 
-import reducerEmployeeAccountData from './employeesAccountData/reduser';
+import reducerGetPosition from './getPosition/reducer';  
+import reducerGetSalaries from './getSalaries/reducer';   
+import reducerGetOffices from './getOffices/reducer';  
+import reducerGetEmployees from './getEmployees/reducer';  
+import reducerGetEmployeesAccount from './getEmployeesAccount/reducer'; 
+import reducerFileFoto from './fileFoto/reducer';   
+import reducerFormStatus from './form/reducer';
+import reducerGetPositionHistory from './getPositionHistory/reducer';
+import reducerGetStatusHistory from './getStatusHistory/reducer';
+import reducerGetExecutionHistory from './getExecutionHistory/reducer';
+import reducerGetActiveHistory from './getActiveHistory/reducer';
 
 const rootReducers = combineReducers({ 
-    getPosition: reducerGetPosition,
-    postPosition: reducerPostPosition,
-    putPosition: reducerPutPosition,
-
-    getSalaries: reducerGetSalaries,
-    postSalaries: reducerPostSalaries,
-
-    getOffices: reducerGetOffices,
-    postOffices: reducerPostOffices,
-    putOffices: reducerPutOffices,
-
+    getPosition: reducerGetPosition,  
+    getSalaries: reducerGetSalaries,   
+    getOffices: reducerGetOffices,  
     getEmployees: reducerGetEmployees,
-    postEmployees: reducerPostEmployees,
-
+    getEmployeesAccount: reducerGetEmployeesAccount, 
+    statusForm: reducerFormStatus,
     fotoFile: reducerFileFoto,
-    employeesAccountData: reducerEmployeeAccountData,
+    getPositionHistory: reducerGetPositionHistory,
+    getStatusHistory: reducerGetStatusHistory,
+    getExecutionHistory: reducerGetExecutionHistory,
+    getActiveHistory: reducerGetActiveHistory,
 });
 
 export default rootReducers;

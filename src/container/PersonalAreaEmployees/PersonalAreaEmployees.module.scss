@@ -1,0 +1,24 @@
+.accountBlock{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    .end{
+        font-family: 'Roboto';
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        button{
+            font-size: 14px; 
+        }
+    }
+    ul{
+        li{
+            color: #ed5338;
+            font-size: 20px; 
+            font-family: 'Helvetica Neue';
+            span{
+                color: black;
+            }
+        }
+    }
+}
