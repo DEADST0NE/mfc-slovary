@@ -1,3 +1,4 @@
 .conteiner{
-    display: flex;   
+    display: flex;  
+    height: -webkit-fill-available; //Костыль ))
 }

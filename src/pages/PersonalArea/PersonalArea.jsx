@@ -3,8 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import { Col } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import {connect} from 'react-redux'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 import Error from '../../component/Error';
 import { resetPasswordEmployees } from '../../redux/form/resetPasswordEmployees/actions';
@@ -12,6 +11,7 @@ import ConfirmationsForm from '../../component/form/ConfirmationsForm';
 import ModalWindowForm from '../../container/ModalWindowForm';
 import PersonalAreaEmployees from '../../container/PersonalAreaEmployees';
 import PersonalAreaPositions from '../../component/PersonalAreaPositions';
+import PersonalAreaFoto from '../../container/PersonalAreaFoto'
 import './PersonalArea.scss'
 
 const PersonalArea = ({location, resetPasswordEmployees }) => { 
@@ -29,14 +29,13 @@ const PersonalArea = ({location, resetPasswordEmployees }) => {
             <Tab.Container id="left-tabs-example" defaultActiveKey="basicData">
                 <div className='personalArea'>
                     <Col sm={2}> 
-                        <div className='accountSidebar'>
-                            <div className='foto'>
-                                <FontAwesomeIcon icon={ faUserAlt } color='#868686' size="7x" />
-                            </div>
+                        <div className='accountSidebar'> 
                             <Nav className="flex-column"
                                 activeKey={key}
                                 onSelect={(selectedKey) => {setKey(selectedKey)}}
                             >
+                                <PersonalAreaFoto />
+                                
                                 <Nav.Item>
                                     <Nav.Link eventKey="basicData" >
                                         Основыне данные

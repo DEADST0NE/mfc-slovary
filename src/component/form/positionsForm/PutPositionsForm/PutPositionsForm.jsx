@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import * as Yup from 'yup'; 
 
 import { putPosition } from '../../../../redux/form/putPosition/actions';
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -54,7 +54,7 @@ const putPositionsForm = ({ onClose, putPosition, object }) => {
                                                 value={values.name}
                                                 className={touched.name && errors.name ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.name} message={errors.name}/>
+                                            <ErrorsFormInput touched={touched.name} message={errors.name}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>
@@ -74,7 +74,7 @@ const putPositionsForm = ({ onClose, putPosition, object }) => {
                                                 value={values.comment}
                                                 className={touched.comment && errors.comment ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.comment} message={errors.comment}/>
+                                            <ErrorsFormInput touched={touched.comment} message={errors.comment}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 

@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup'; 
 
 import { putOffices } from '../../../../redux/form/putOffices/actions'; 
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -89,7 +89,7 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                                 value={values.mnemo}
                                                 className={touched.mnemo && errors.mnemo ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.mnemo} message={errors.mnemo}/>
+                                            <ErrorsFormInput touched={touched.mnemo} message={errors.mnemo}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>
@@ -109,7 +109,7 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                                 value={values.name}
                                                 className={touched.name && errors.name ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.name} message={errors.name}/>
+                                            <ErrorsFormInput touched={touched.name} message={errors.name}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -129,7 +129,7 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                                 value={values.smallName}
                                                 className={touched.smallName && errors.smallName ? s.inputError : null}   
                                             />
-                                            <ErrorText touched={touched.smallName} message={errors.smallName}/>
+                                            <ErrorsFormInput touched={touched.smallName} message={errors.smallName}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 

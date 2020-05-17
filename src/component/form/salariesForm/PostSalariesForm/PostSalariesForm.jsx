@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 import { postSalaries } from '../../../../redux/form/postSalaries/actions';
 import DatePickerField from '../../../../component/DatePickerField';
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -98,7 +98,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.salary}
                                                 className={touched.salary && errors.salary ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.salary} message={errors.salary}/>
+                                            <ErrorsFormInput touched={touched.salary} message={errors.salary}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>
@@ -118,7 +118,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.costMinute}
                                                 className={touched.costMinute && errors.costMinute ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.costMinute} message={errors.costMinute}/>
+                                            <ErrorsFormInput touched={touched.costMinute} message={errors.costMinute}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -138,7 +138,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.coefficient}
                                                 className={touched.coefficient && errors.coefficient ? s.inputError : null}   
                                             />
-                                            <ErrorText touched={touched.coefficient} message={errors.coefficient}/>
+                                            <ErrorsFormInput touched={touched.coefficient} message={errors.coefficient}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -158,7 +158,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.costNormal}
                                                 className={touched.costNormal && errors.costNormal ? s.inputError : null}   
                                             /> 
-                                            <ErrorText touched={touched.costNormal} message={errors.costNormal}/>
+                                            <ErrorsFormInput touched={touched.costNormal} message={errors.costNormal}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -178,7 +178,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.coefficientJobPosition}
                                                 className={touched.coefficientJobPosition && errors.coefficientJobPosition ? s.inputError : null} 
                                             />  
-                                            <ErrorText touched={touched.coefficientJobPosition} message={errors.coefficientJobPosition}/>
+                                            <ErrorsFormInput touched={touched.coefficientJobPosition} message={errors.coefficientJobPosition}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>  
@@ -194,7 +194,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 onChange={setFieldValue}
                                                 className={`form-control ${touched.dateStart && errors.dateStart ? s.inputError : ''}`} 
                                             />  
-                                            <ErrorText touched={touched.dateStart} message={errors.dateStart}/>
+                                            <ErrorsFormInput touched={touched.dateStart} message={errors.dateStart}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -211,7 +211,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 onChange={setFieldValue}
                                                 className='form-control' 
                                             />
-                                            <ErrorText touched={touched.dateStop} message={errors.dateStop}/>
+                                            <ErrorsFormInput touched={touched.dateStop} message={errors.dateStop}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -231,7 +231,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.comment}
                                                 className={touched.comment && errors.comment ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.comment} message={errors.comment}/> 
+                                            <ErrorsFormInput touched={touched.comment} message={errors.comment}/> 
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -251,7 +251,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                                 value={values.employeeFioAdd}
                                                 className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/> 
+                                            <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/> 
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>  

@@ -5,35 +5,26 @@
     background-color: #ececec !important;
     .accountSidebar{
         background-color: #ffffff; 
-        padding: 20px 0px;
+        padding: 0px 0px 20px 0px;
         border-radius: 5px;
-        .nav{  
-            margin-top: 20px;
-                .nav-item{
-                    a{
-                        font-family: 'Roboto';
-                        color: black;
-                        border-bottom: 1px solid #ddd !important;
-                        &.active{
-                            background-color: rgb(252, 252, 252) !important;
-                            border-left: 2px solid #ed5338 !important;
-                        } 
-                        &:hover{
-                            color: #ed5338 !important;
-                        }
-                        a:last-child{
-                            border-bottom: none;
-                        }
+        .nav{   
+            .nav-item{
+                a{
+                    font-family: 'Roboto';
+                    color: black;
+                    border-bottom: 1px solid #ddd !important;
+                    &.active{
+                        background-color: rgb(252, 252, 252) !important;
+                        border-left: 2px solid #ed5338 !important;
+                    } 
+                    &:hover{
+                        color: #ed5338 !important;
                     }
-                } 
-            }
-    }
-    .foto{
-        padding: 20px 0px;
-        display: flex;
-        justify-content: center;
-        .svg{
-            fill:  #ddd
+                    a:last-child{
+                        border-bottom: none;
+                    }
+                }
+            } 
         }
-    }
+    } 
 }

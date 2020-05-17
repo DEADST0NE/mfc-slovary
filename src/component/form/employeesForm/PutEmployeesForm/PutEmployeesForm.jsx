@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 import { putEmployees } from '../../../../redux/form/putEmployees/actions';
 import FormFileFotoUpload from '../../../../container/FormFileFotoUpload';
 import DatePickerField from '../../../../component/DatePickerField'; 
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 
@@ -74,7 +74,7 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
                                             value={values.fio.lastName}
                                             className={getIn(errors, 'fio.lastName') && getIn(touched, 'fio.lastName') ? s.inputError : null}
                                         />
-                                        <ErrorText touched={getIn(touched, 'fio.lastName')} message={getIn(errors, 'fio.lastName')} />
+                                        <ErrorsFormInput touched={getIn(touched, 'fio.lastName')} message={getIn(errors, 'fio.lastName')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -94,7 +94,7 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
                                             value={values.fio.name}
                                             className={getIn(errors, 'fio.name') && getIn(touched, 'fio.name') ? s.inputError : null} 
                                         />
-                                        <ErrorText touched={getIn(touched, 'fio.name')} message={getIn(errors, 'fio.name')} />
+                                        <ErrorsFormInput touched={getIn(touched, 'fio.name')} message={getIn(errors, 'fio.name')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -188,7 +188,7 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
                                             value={values.email}
                                             className={touched.email && errors.email ? s.inputError : null}   
                                         />
-                                        <ErrorText touched={touched.email} message={errors.email}/>
+                                        <ErrorsFormInput touched={touched.email} message={errors.email}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
 import { postPosition } from '../../../../redux/form/postPosition/actions';
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -59,7 +59,7 @@ const PostPositionsForm = ({ onClose, postPosition }) => {
                                                 value={values.name}
                                                 className={touched.name && errors.name ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.name} message={errors.name}/>
+                                            <ErrorsFormInput touched={touched.name} message={errors.name}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>
@@ -79,7 +79,7 @@ const PostPositionsForm = ({ onClose, postPosition }) => {
                                                 value={values.comment}
                                                 className={touched.comment && errors.comment ? s.inputError : null} 
                                             />
-                                            <ErrorText touched={touched.comment} message={errors.comment}/>
+                                            <ErrorsFormInput touched={touched.comment} message={errors.comment}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
@@ -99,7 +99,7 @@ const PostPositionsForm = ({ onClose, postPosition }) => {
                                                 value={values.employeeFioAdd}
                                                 className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null}   
                                             />
-                                            <ErrorText touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
+                                            <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 

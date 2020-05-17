@@ -2,7 +2,7 @@ export const searchItem = (string, mass, setHuk) =>{
     if(string.trim() !==  ''){ 
         let found = [];
         let regexp = RegExp(string, 'ig');
-        
+        console.log(mass)
         for (let val of mass){
             for (let key in val) {
                 if( regexp.test(val[key]) ){

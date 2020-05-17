@@ -1,12 +1,12 @@
 import React from 'react';
 
-import s from './ErrorText.module.scss';
+import s from './ErrorsFormInput.module.scss';
 
-const ErrorText = ({ touched, message }) => {
+const ErrorsFormInput = ({ touched, message }) => {
     if (touched && message){
         return <div className={s.formMessage}>{ message }</div>
     }
     return '';
 }
 
-export default ErrorText;
+export default ErrorsFormInput;

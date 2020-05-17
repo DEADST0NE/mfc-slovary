@@ -1,6 +1,10 @@
 .tableGlobal{
     max-height: 650px;
-    overflow-y: auto;
+    overflow-y: auto; 
+    table{
+        border-collapse: separate; 
+        border: none;
+    }
     td{  
         padding: 10px;
         font-size: 20px;
@@ -15,12 +19,16 @@
         }
     }
     thead{ 
-        td{   
+        td{  
+            cursor: default; 
             font-weight: 500;
             font-size: 25px;
             height: 75px; 
             font-family: 'Roboto', sans-serif; 
-            position: sticky; 
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0; 
+            background-color: #fff; 
             svg{
                 cursor: pointer;
                 color: #ddd;
@@ -50,6 +58,16 @@
                 }
             }  
         }
+    }
+    &::-webkit-scrollbar-thumb
+    {
+        border-radius: 5px;
+        background-color: rgb(109, 103, 103);
+    }
+    &::-webkit-scrollbar
+    {
+        width: 12px;
+        background-color: #F5F5F5;
     }
 }
 .searchBLeft{

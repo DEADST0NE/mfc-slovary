@@ -11,7 +11,7 @@ import InputMask from 'react-input-mask';
 import FormFileFotoUpload from '../../../../container/FormFileFotoUpload';
 import DatePickerField from '../../../../component/DatePickerField'; 
 import { postEmployees } from '../../../../redux/form/postEmployees/actions'; 
-import ErrorText from '../../../../component/ErrorsText';
+import ErrorsFormInput from '../../../../component/ErrorsFormInput';
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -126,7 +126,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.fio.lastName}
                                             className={getIn(errors, 'fio.lastName') && getIn(touched, 'fio.lastName') ? s.inputError : null}
                                         />
-                                        <ErrorText touched={getIn(touched, 'fio.lastName')} message={getIn(errors, 'fio.lastName')} />
+                                        <ErrorsFormInput touched={getIn(touched, 'fio.lastName')} message={getIn(errors, 'fio.lastName')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -146,7 +146,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.fio.name}
                                             className={getIn(errors, 'fio.name') && getIn(touched, 'fio.name') ? s.inputError : null} 
                                         />
-                                        <ErrorText touched={getIn(touched, 'fio.name')} message={getIn(errors, 'fio.name')} />
+                                        <ErrorsFormInput touched={getIn(touched, 'fio.name')} message={getIn(errors, 'fio.name')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -239,7 +239,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.email}
                                             className={touched.email && errors.email ? s.inputError : null}   
                                         />
-                                        <ErrorText touched={touched.email} message={errors.email}/>
+                                        <ErrorsFormInput touched={touched.email} message={errors.email}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -263,7 +263,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.passport.serial}
                                             mask="99-99" 
                                             maskChar=" " />
-                                            <ErrorText touched={getIn(touched, 'passport.serial')} message={getIn(errors, 'passport.serial')} />
+                                            <ErrorsFormInput touched={getIn(touched, 'passport.serial')} message={getIn(errors, 'passport.serial')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -284,7 +284,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.passport.number}
                                             mask="999999" 
                                             maskChar=" " />
-                                            <ErrorText touched={getIn(touched, 'passport.number')} message={getIn(errors, 'passport.number')} />
+                                            <ErrorsFormInput touched={getIn(touched, 'passport.number')} message={getIn(errors, 'passport.number')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -362,7 +362,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.snils}
                                             mask="999-999-999-99" 
                                             maskChar=" " />
-                                            <ErrorText touched={getIn(touched, 'passport.snils')} message={getIn(errors, 'passport.snils')} />
+                                            <ErrorsFormInput touched={getIn(touched, 'passport.snils')} message={getIn(errors, 'passport.snils')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -383,7 +383,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.inn} 
                                             mask="999-999-999-999"
                                             maskChar=" " />
-                                            <ErrorText touched={getIn(touched, 'passport.inn')} message={getIn(errors, 'passport.inn')} />
+                                            <ErrorsFormInput touched={getIn(touched, 'passport.inn')} message={getIn(errors, 'passport.inn')} />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -406,7 +406,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.login}
                                             className={touched.login && errors.login ? s.inputError : null}   
                                         />
-                                        <ErrorText touched={touched.login} message={errors.login}/>
+                                        <ErrorsFormInput touched={touched.login} message={errors.login}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -426,7 +426,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.password}
                                             className={touched.password && errors.password ? s.inputError : null}   
                                         />
-                                        <ErrorText touched={touched.password} message={errors.password}/>
+                                        <ErrorsFormInput touched={touched.password} message={errors.password}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -518,7 +518,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             onChange={setFieldValue}
                                             className={`form-control ${touched.dateStart && errors.dateStart ? s.inputError : ''}`}
                                         />
-                                        <ErrorText touched={touched.dateStart} message={errors.dateStart}/>
+                                        <ErrorsFormInput touched={touched.dateStart} message={errors.dateStart}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -580,7 +580,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                                 <option value={3}>Декретный отпуск</option>
                                                 <option value={4}>Работает</option> 
                                             </Form.Control>
-                                            <ErrorText touched={touched.statusId} message={errors.statusId}/>
+                                            <ErrorsFormInput touched={touched.statusId} message={errors.statusId}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -597,7 +597,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             onChange={setFieldValue}
                                             className={`form-control ${touched.statusDateStart && errors.statusDateStart ? s.inputError : ''}`}
                                         />
-                                        <ErrorText touched={touched.statusDateStart} message={errors.statusDateStart}/>
+                                        <ErrorsFormInput touched={touched.statusDateStart} message={errors.statusDateStart}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -635,7 +635,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                                 <option value={true}>Активный</option>
                                                 <option value={false}>Не активный</option>
                                             </Form.Control>
-                                            <ErrorText touched={touched.isActive} message={errors.isActive}/>
+                                            <ErrorsFormInput touched={touched.isActive} message={errors.isActive}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -652,7 +652,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             onChange={setFieldValue} 
                                             className={`form-control ${touched.isActiveDateStart && errors.isActiveDateStart ? s.inputError : ''}`}
                                         />
-                                        <ErrorText touched={touched.isActiveDateStart} message={errors.isActiveDateStart}/>
+                                        <ErrorsFormInput touched={touched.isActiveDateStart} message={errors.isActiveDateStart}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -688,7 +688,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.intensity}
                                             className={touched.intensity && errors.intensity ? s.inputError : null} 
                                         />
-                                        <ErrorText touched={touched.intensity} message={errors.intensity}/>
+                                        <ErrorsFormInput touched={touched.intensity} message={errors.intensity}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -708,7 +708,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.rate}
                                             className={touched.rate && errors.rate ? s.inputError : null} 
                                         />
-                                        <ErrorText touched={touched.rate} message={errors.rate}/>
+                                        <ErrorsFormInput touched={touched.rate} message={errors.rate}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
@@ -728,7 +728,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                             value={values.employeeFioAdd}
                                             className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null} 
                                         />
-                                        <ErrorText touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
+                                        <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
                                     </Col>
                                 </Form.Row>
                             </Form.Group>

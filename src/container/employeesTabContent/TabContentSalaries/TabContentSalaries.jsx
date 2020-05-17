@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux'; 
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
+import { connect } from 'react-redux';  
 
 import { getSalaries } from '../../../redux/getSalaries/actions';
 //import Spiner from '../../../сomponent/Spiner';
 //import Error from '../../../сomponent/Error'; 
 import ModalWindowForm from '../../../container/ModalWindowForm'; 
 import PostSalariesForm from '../../../component/form/salariesForm/PostSalariesForm';
-import TablesSalaries from '../../../component/tables/TablesSalaries';
-import {searchItem, changeSetSearchText} from '../../../utils/search';
-import s from '../GlobalTab.module.scss';
+import TablesSalaries from '../../../component/tables/TablesSalaries'; 
+import SearchButton from '../../../component/SearchButton'; 
 
 const TabContentSalaries = ({salaries, loading, error, getSalaries }) => {
 
@@ -29,20 +25,14 @@ const TabContentSalaries = ({salaries, loading, error, getSalaries }) => {
     //}
     
     return (
-        <>
-            <div className={s.searchBLeft}>
-                <InputGroup  className={s.inputGroup}>
-                    <FormControl placeholder="Строка поиска" 
-                                onChange={ (event)=>{ changeSetSearchText(event, setSearchText, setSearchOn, setSearch) } }
-                                onKeyDown={(event)=>{ if(event.keyCode === 13) {
-                                    searchItem(searchText, salaries, setSearch); setSearchOn(true)} }} />
-                    <InputGroup.Append>
-                        <Button variant="outline-secondary" 
-                            onClick={ ()=>{ searchItem(searchText, salaries, setSearch); setSearchOn(true) } }>Поиск</Button>
-                    </InputGroup.Append>
-                </InputGroup>
-                <Button variant="primary" onClick={ ()=>{ setShowModalPostAddJobSalaries(true) } }>Добавить</Button> 
-            </div>  
+        <> 
+            <SearchButton 
+                searchText={searchText} 
+                setSearchText={setSearchText} 
+                setSearch={setSearch} 
+                setSearchOn={setSearchOn} 
+                mass={salaries}
+                formModalOpen={ () => setShowModalPostAddJobSalaries(true) }/>  
 
             { 
                 searchOn ? 
