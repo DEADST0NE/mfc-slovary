@@ -16,5 +16,10 @@ code {
 
 .btn-primary{
   background-color: #d3531a !important;
-  border-color: #d3531a !important;
+  border-color: #d3531a !important; 
+  transition: all 0.3s ease;
+}
+.btn-primary:hover{
+  background-color: #a84216 !important;
+  border-color: #a84216 !important; 
 }
