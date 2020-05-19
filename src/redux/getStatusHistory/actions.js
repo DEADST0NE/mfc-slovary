@@ -20,7 +20,7 @@ const getStatusHistoryError = (error) => ({
 
 //Запрос все история статуса
 const getStatusHistoryRequest = async (id) => {
-    return await axios.get(`${id}/pa/statusHistory`)
+    return await axios.get(`PersonalArea/${id}/pa/statusHistory`)
     .then(response => response.data);
 };
 export const getStatusHistory = (id) => (dispatch) => {

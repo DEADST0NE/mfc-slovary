@@ -3,20 +3,20 @@ import {connect} from 'react-redux';
 import {getActiveHistory} from '../../../redux/getActiveHistory/actions';
 import Table from 'react-bootstrap/Table'
 
-//import Spiner from '../../../сomponent/Spiner';
-//import Error from '../../../сomponent/Error'; 
+import Spinner from '../../../component/Spinner';
+import Error from '../../../component/Error';
 import s from '../GlobalTables.module.scss'; 
 
 const TablesActiveHistory = ({ id, getActiveHistory, data, error, loading}) => {
 
     useEffect(() => { getActiveHistory(id) },[getActiveHistory, id]); 
-    
-    //if(loading){
-    //    return <Spiner />
-    //}
-    //else(error){
-    //    return <Error />
-    //}  
+    console.log(data)
+    if(loading){
+        return <Spinner />
+    }
+    if(error){
+        return <Error />
+    }  
     
     if(!data.length){ 
         return (

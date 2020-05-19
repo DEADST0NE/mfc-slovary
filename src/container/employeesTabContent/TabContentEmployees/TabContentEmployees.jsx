@@ -2,15 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';  
 
-//import Spiner from '../../../сomponent/Spiner';
-//import Error from '../../../сomponent/Error';
+import Spinner from '../../../component/Spinner';
+import Error from '../../../component/Error';
 import ModalWindowForm from '../../../container/ModalWindowForm';
 import { getEmployees } from '../../../redux/getEmployees/actions';   
 import TablesEmployees from '../../../component/tables/TablesEmployees';
 import PostEmployeesForm from '../../../component/form/employeesForm/PostEmployeesForm';
 import SearchButton from '../../../component/SearchButton'; 
 
-const TabContentEmployees = ({getEmployees, loading, error, employees, foto}) => {
+const TabContentEmployees = ({getEmployees, loading, error, employees}) => {
 
     const [showModalPostEmployee, setShowModalPostEmployee] = useState(false);
     const [searchText, setSearchText] = useState(''); //Текст поиска
@@ -18,12 +18,12 @@ const TabContentEmployees = ({getEmployees, loading, error, employees, foto}) =>
     const [searchOn, setSearchOn] = useState(false); //Показать контент поиска
     useEffect(() => { getEmployees() },[getEmployees]);
 
-    //if(loading){
-    //    return <Spiner />
-    //}
-    //else(error){
-    //    return <Error />
-    //}
+    if(loading){
+        return <Spinner />  
+    } 
+    if(error){
+        return <Error text={'Сервис не доступен в данный момент времени'}/>
+    }
     
     return ( 
         <> 

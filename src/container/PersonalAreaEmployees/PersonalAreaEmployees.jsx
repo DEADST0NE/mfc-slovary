@@ -3,21 +3,23 @@ import {connect} from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import ModalWindowForm from '../ModalWindowForm';
 
+import Spinner from 'react-bootstrap/Spinner';
+import Error from '../../component/Error';
 import PutEmployeesForm from '../../component/form/employeesForm/PutEmployeesForm';
 import { getEmployeesAccount } from '../../redux/getEmployeesAccount/actions';
 import s from './PersonalAreaEmployees.module.scss';
 
-const PersonalAreaPositions = ({ id, getEmployeeAccountData, loading, error, data }) => { 
-    useEffect(() => { getEmployeesAccount(id) },[getEmployeeAccountData, id]);
+const PersonalAreaPositions = ({ id, getEmployeesAccount, loading, error, data }) => { 
+    useEffect(() => { getEmployeesAccount(id) },[getEmployeesAccount, id]);
     const [showWindow, setShowWindow] = useState(false); 
 
-    //if(loading){
-    //    return 'Загрузка'
-    //}
+    if(loading){
+        return <Spinner />
+    }
 
-    //if(error){
-    //    return 'Ошибка'
-    //}
+    if(error){
+        return <Error text={'Сервис в данный момент времени не доступен'}/>
+    }
 
     return (
         <>

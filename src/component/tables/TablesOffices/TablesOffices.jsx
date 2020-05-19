@@ -13,12 +13,12 @@ import s from '../GlobalTables.module.scss';
 const TablesOffices = ({ mass }) => { 
     const [ showModalPutOffices, setShowModalPutOffices ] = useState(false);//Индикатор отображения модального окна
     const [ sortUpDown, setSortUpDown ] = useState(false);//Индикатор сортировки
-    const [ putIdOffices, setPutIdOffices ] = useState(null);//id филиала  
+    const [ putObjectOffices, setPutObjectOffices ] = useState(null);//id филиала  
     const [ showModalDeleteOffices, setShowModalDeleteOffices ] = useState(false); //Индикатор отображения модального окна
 
 
     const openModalOffices = (object) => {//Открывает модальное окно изменения должности 
-        setPutIdOffices(object.id);
+        setPutObjectOffices(object);
         setShowModalPutOffices(true);
     }
 
@@ -63,7 +63,7 @@ const TablesOffices = ({ mass }) => {
                 title='Изменение даных филиала'
                 onClose={ () => setShowModalPutOffices(false) }
                 body={
-                        <PutOfficesForm id={putIdOffices} onClose={ () => setShowModalPutOffices(false) } />
+                        <PutOfficesForm object={putObjectOffices} onClose={ () => setShowModalPutOffices(false) } />
                     }
             />
 

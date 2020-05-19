@@ -26,7 +26,10 @@ const getOfficesRequest = async () => {
 export const getOffices = () => (dispatch) => {
     dispatch(getOfficesRequested());
     getOfficesRequest()
-        .then((data) => dispatch(getOfficesSuccess(data)))
+        .then((data) => {
+            data.forEach( (item) => { Object.keys(item).forEach(i => {if( item[i]===null ) { item[i] = '' }} ) } )//Переводим все поля объекта null в '' по тому что input.value в formik не может быть null !!!
+            dispatch(getOfficesSuccess(data))
+        })
         .catch((err) => dispatch(getOfficesError(err)));
 };
 //--

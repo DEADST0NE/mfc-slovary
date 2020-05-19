@@ -14,8 +14,7 @@ const ModalWindowForm = ({ show, onClose, title='Модальное окно', b
     useEffect(() => { formClear() },[formClear]); 
 
     const Body = () => {
-        if (loading) {
-            setTimeout(onClose, 2000)
+        if (loading) { 
             return ( 
                 <div className='statusBlock'>
                     <Spinner animation="border" className='spiner' />
@@ -23,7 +22,7 @@ const ModalWindowForm = ({ show, onClose, title='Модальное окно', b
             )
         }
         if (error) {
-            setTimeout(onClose, 2000)
+            setTimeout(onClose, 5000)
             return ( 
                 <div className='statusBlock'>
                     <Error />
@@ -32,10 +31,10 @@ const ModalWindowForm = ({ show, onClose, title='Модальное окно', b
         }
 
         if (success) { 
-            setTimeout(onClose, 2000)
+            setTimeout(onClose, 5000)
             return (
                 <div className='statusBlock'>
-                    <FontAwesomeIcon icon={faCheckCircle} />
+                    <FontAwesomeIcon color='green' icon={faCheckCircle} />
                 </div>
             )
         } 

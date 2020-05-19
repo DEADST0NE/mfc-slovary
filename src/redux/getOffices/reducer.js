@@ -129,7 +129,7 @@ const reducerGetOffices = (state = initialState, action) => {
         case GET_OFFICES_SUCCESS: 
             return {
                 ...state,
-                offices: action.payload,
+                data: action.payload,
                 loading: false,
                 error: false
             }
@@ -138,7 +138,7 @@ const reducerGetOffices = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: true
+                error: true,
             } 
         default: 
             return state;

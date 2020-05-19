@@ -26,23 +26,11 @@ const getEmployeesRequest = async () => {
 export const getEmployees = () => (dispatch) => {
     dispatch(getEmployeesRequested());
     getEmployeesRequest()
-        .then((data) => { 
-            data.passport.birthDate ? data.passport.birthDate = new Date(Date.parse(data.passport.birthDate)).toLocaleDateString() : void 0; //Переводит дату в читаймую
-            data.passport.birthDate ? data.passport.birthPlace = new Date(Date.parse(data.passport.birthPlace)).toLocaleDateString() : void 0; //Переводит дату в читаймую
+        .then((data) => {
+            data.forEach( (item) => { Object.keys(item).forEach(i => {if( item[i]===null ) { item[i] = '' }} ) } )//Переводим все поля объекта null в '' по тому что input.value в formik не может быть null !!!
             dispatch(getEmployeesSuccess(data))
         })
-        .catch((err) => dispatch(getEmployeesError(err)));
+        .catch((err) => {console.log(err); dispatch(getEmployeesError(err))});
 };
-//--
-
-//Запрос на добавление сотрудника
-const postEmployeesRequest = async (object) => {
-    return await axios.post(`Employees`, object) 
-};
-
-export const postEmployee = (object) => (dispatch) => {
-    postEmployeesRequest(object);
-    dispatch(getEmployees());
-};
-//--
+//-- 
 

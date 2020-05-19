@@ -11,7 +11,7 @@ const PersonalAreaFoto = ({data}) => {
         <div className={s.foto} 
             onMouseEnter={() => setIsShown(true)} 
             onMouseLeave={() => setIsShown(false)}>
-                { data.foto === '' ? <FontAwesomeIcon icon={ faUserAlt } color='#868686' size="7x" /> : <img src={data.foto} alt='FotoEmployees'/>} 
+                { data.foto ? <img src={data.foto} alt='FotoEmployees'/> : <FontAwesomeIcon icon={ faUserAlt } color='#868686' size="7x" /> } 
                 { isShown ? <FontAwesomeIcon className={s.addFoto} icon={ faCamera } color='#d3531a' size="7x" /> : null} 
         </div>
     )

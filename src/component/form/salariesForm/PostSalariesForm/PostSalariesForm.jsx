@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
+import InputGrupForm from '../../../InputGrupForm';
 import { postSalaries } from '../../../../redux/form/postSalaries/actions';
 import DatePickerField from '../../../../component/DatePickerField';
 import ErrorsFormInput from '../../../../component/ErrorsFormInput';
@@ -16,12 +17,13 @@ const validationSchema = Yup.object().shape({
     salary: Yup.string().required('Обязательное поле'),
     dateStart: Yup.string().required('Обязательное поле'),
     employeeFioAdd: Yup.string().required('Обязательное поле'),
+    costMinute: Yup.string().required('Обязательное поле'), 
 })
 
 const PostSalariesForm = ({ onClose, postSalaries, position }) => {  
 
-    const [positionId, setPositionId] = useState(null);//Id Должности
-    const [positionName, setPositionName] = useState(null);//Наименование должности
+    const [positionId, setPositionId] = useState(position[0].id);//Id Должности
+    const [positionName, setPositionName] = useState(position[0].name);//Наименование должности
 
     const autoPositionSelect = (event) =>{//Для автоматического занесение id должности и наименования
         event.persist(); 
@@ -41,14 +43,14 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                 dateStart: '', 
                 dateStop: '', 
                 comment: '', 
-                employeeFioAdd: ''
+                employeeFioAdd: '',
+                coefficientServices: ''
             }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) =>{
                 setSubmitting(true);
                 values.jobPositionId = positionId;
-                values.jobPositionName = positionName;
-                console.log(values);
+                values.jobPositionName = positionName; 
                 postSalaries(values);
             }}
         >
@@ -62,6 +64,7 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                 isSubmitting 
             }) => 
                 {
+                    console.log(values.dateStart);
                     return(
                         <form onSubmit={ handleSubmit } className={s.forms}>
                             <Modal.Body>
@@ -81,107 +84,58 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                             </Form.Control>
                                         </Col>
                                     </Form.Row>
-                                </Form.Group>  
+                                </Form.Group> 
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.salary} 
+                                    touched={touched.salary} 
+                                    errors={errors.salary} 
+                                    name={'salary'} 
+                                    title={'Оклад'} 
+                                    type='text'/> 
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.costMinute} 
+                                    touched={touched.costMinute} 
+                                    errors={errors.costMinute} 
+                                    name={'costMinute'} 
+                                    title={'Стоимость минуты'} 
+                                    type='number'/>
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.coefficient} 
+                                    touched={touched.coefficient} 
+                                    errors={errors.coefficient} 
+                                    name={'coefficient'} 
+                                    title={'Коэффициент'} 
+                                    type='number'/>    
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.costNormal} 
+                                    touched={touched.costNormal} 
+                                    errors={errors.costNormal} 
+                                    name={'costNormal'} 
+                                    title={'Норма стоимости'} 
+                                    type='number'/>  
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.coefficientServices} 
+                                    touched={touched.coefficientServices} 
+                                    errors={errors.coefficientServices} 
+                                    name={'coefficientServices'} 
+                                    title={'Коэффициент за стоимость оказанных услуг'} 
+                                    type='number'/> 
                                 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Оклад </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control 
-                                                type="text" 
-                                                placeholder="Оклад"  
-                                                name='salary' 
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.salary}
-                                                className={touched.salary && errors.salary ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.salary} message={errors.salary}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Стоимость минуты </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="number" 
-                                                placeholder="Стоимость минуты"  
-                                                name='costMinute' 
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.costMinute}
-                                                className={touched.costMinute && errors.costMinute ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.costMinute} message={errors.costMinute}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Коэффициент </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="number" 
-                                                placeholder="Коэффициент" 
-                                                name='coefficient'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.coefficient}
-                                                className={touched.coefficient && errors.coefficient ? s.inputError : null}   
-                                            />
-                                            <ErrorsFormInput touched={touched.coefficient} message={errors.coefficient}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Норма стоимости </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="number" 
-                                                placeholder="Норма стоимости"  
-                                                name='costNormal'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.costNormal}
-                                                className={touched.costNormal && errors.costNormal ? s.inputError : null}   
-                                            /> 
-                                            <ErrorsFormInput touched={touched.costNormal} message={errors.costNormal}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Коэффициент должности </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Коэффициент должности"  
-                                                name='coefficientJobPosition'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.coefficientJobPosition}
-                                                className={touched.coefficientJobPosition && errors.coefficientJobPosition ? s.inputError : null} 
-                                            />  
-                                            <ErrorsFormInput touched={touched.coefficientJobPosition} message={errors.coefficientJobPosition}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>  
                                 <Form.Group> 
                                     <Form.Row>
                                         <Col sm="5" className={s.labelCenter}>
@@ -216,45 +170,25 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                     </Form.Row>
                                 </Form.Group> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Комментарий </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Комментарий" 
-                                                name='comment' 
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.comment}
-                                                className={touched.comment && errors.comment ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.comment} message={errors.comment}/> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.comment} 
+                                    touched={touched.comment} 
+                                    errors={errors.comment} 
+                                    name={'comment'} 
+                                    title={'Комментарий'} 
+                                    type='text'/>  
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Сотрудник добавивщий запись </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Сотрудник добавивщий запись" 
-                                                name='employeeFioAdd'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.employeeFioAdd}
-                                                className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>  
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.employeeFioAdd} 
+                                    touched={touched.employeeFioAdd} 
+                                    errors={errors.employeeFioAdd} 
+                                    name={'employeeFioAdd'} 
+                                    title={'Сотрудник добавивщий запись'} 
+                                    type='text'/>    
                             </Modal.Body> 
 
                             <Modal.Footer>  

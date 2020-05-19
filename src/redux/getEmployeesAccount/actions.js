@@ -18,16 +18,23 @@ const getEmployeesAccountError = (error) => ({
     payload: error
 });
 
-//Запрос на добавление сотрудника
-const getEmployeesAccountRequest = async (object, id) => {
-    return await axios.put(`Employees/${id}`, object) 
+//Запрос на основныйх данных сотрудника
+const getEmployeesAccountRequest = async (id) => {
+    return await axios.get(`Employees/${id}`) 
 };
 
-export const getEmployeesAccount = (object, id) => (dispatch) => {
+export const getEmployeesAccount = (id) => (dispatch) => {
+    console.log(id);
     dispatch(getEmployeesAccountRequested());
-    getEmployeesAccountRequest(object, id)
-        .then((data) => dispatch(getEmployeesAccountSuccess(data)))
-        .catch((err) => dispatch(getEmployeesAccountError(err)));
+    getEmployeesAccountRequest(id)
+        .then((data) => { 
+            data.data.passport.birthDate ? 
+                data.data.passport.birthDate = new Date(Date.parse(data.data.passport.birthDate)).toLocaleDateString() : void 0; //Переводит дату в читаймую
+            data.data.passport.birthDate ? 
+                data.data.passport.birthPlace = new Date(Date.parse(data.data.passport.birthPlace)).toLocaleDateString() : void 0; //Переводит дату в читаймую
+            dispatch(getEmployeesAccountSuccess(data.data))
+        })
+        .catch((err) => {console.log(2); dispatch(getEmployeesAccountError(err))});
 };
 //--
 

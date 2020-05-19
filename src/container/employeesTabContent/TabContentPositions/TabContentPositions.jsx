@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';  
 
-//import Spiner from '../../../сomponent/Spiner';
-//import Error from '../../../сomponent/Error'; 
+import Spinner from '../../../component/Spinner';
+import Error from '../../../component/Error'; 
 import ModalWindowForm from '../../../container/ModalWindowForm'; 
 import { getJobPosition } from '../../../redux/getPosition/actions';
 import PostPositionsForm from '../../../component/form/positionsForm/PostPositionsForm';
@@ -18,10 +18,10 @@ const TabContentPositions = ({ getJobPosition, position, loading, error, postJob
     useEffect(() => { getJobPosition() },[getJobPosition]);
         
     //if(loading){
-    //    return <Spiner />
-    //}
-    //else(error){
-    //    return <Error />
+    //    return <Spinner />
+    //} 
+    //if(error){
+    //    return <Error text={'Сервис не доступен в данный момент времени'}/>
     //}
 
     return ( 

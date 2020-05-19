@@ -1,0 +1,12 @@
+.spinnerBlok{
+    display: flex;
+    justify-content: center; 
+    color: #d3531a;
+    padding: 50px;
+    .spinner{
+        width: 20rem;
+        height: 20rem; 
+        border: 1em solid currentColor;
+        border-right-color: transparent;
+    }
+}

@@ -16,48 +16,42 @@ const validationSchema = Yup.object().shape({
     mnemo: Yup.string().required('Обязательное поле'),
     name: Yup.string().required('Обязательное поле'),
     smallName: Yup.string().required('Обязательное поле'),
+    minTrudRequestNumber: Yup.string().required('Обязательное поле'),
 })
 
-const PutOfficesForm = ({ id, onClose, putOffices }) => {  
+const InputGrupForm = ({handleChange, handleBlur, valueInput, touched, errors, name, title, type}) =>{
+    return (
+        <Form.Group> 
+            <Form.Row> 
+                <Col sm="5" className={s.labelCenter}>
+                    <Form.Label> {title} </Form.Label>
+                </Col>
+                <Col sm="6">
+                    <Form.Control 
+                        type={type}
+                        placeholder={title}
+                        name={name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={valueInput}
+                        className={touched && errors ? s.inputError : null} 
+                    />
+                    <ErrorsFormInput touched={touched} message={errors}/>
+                </Col>
+            </Form.Row>
+        </Form.Group>
+    )
+}
 
+const PutOfficesForm = ({ object, onClose, putOffices }) => {  
+    console.log(object)
     return (   
         <Formik 
-            initialValues={{ 
-                mnemo: '',
-                name: '',
-                smallName: '',
-                address: '',
-                countPopulation: '',
-                phoneNumber: '',
-                email: '',
-                website: '',
-                emailLogin: '',
-                emailPassword: '',
-                emailServer: '',
-                inn: '',
-                kpp: '',
-                ogrn: '',
-                oktmo: '',
-                emailPort: '',
-                esiaOperatorSnils: '',
-                ias: '',
-                esiaName: '',
-                callCenterServer: '',
-                isStructuralSubdivision: '',
-                mdmUid: '',
-                mfcEpgu: '',
-                geographicCoordination: '',
-                skype: '',
-                schedule: '',
-                tosp: '',
-                convenience: '',
-                comment: ''
-            }}
+            initialValues={object}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) =>{
-                setSubmitting(true);
-                console.log(values);
-                putOffices(values, id);
+                setSubmitting(true); 
+                putOffices(object.id, values);
             }}
         >
             {({ values, 
@@ -74,101 +68,65 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                             <Modal.Body> 
                                 <h5>Основные данные</h5>
                                 <hr /> 
-                                <Form.Group> 
-                                    <Form.Row> 
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Мнемоника </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control 
-                                                type="text" 
-                                                placeholder="Мнемоника"  
-                                                name='mnemo' 
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.mnemo}
-                                                className={touched.mnemo && errors.mnemo ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.mnemo} message={errors.mnemo}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.mnemo} 
+                                    touched={touched.mnemo} 
+                                    errors={errors.mnemo} 
+                                    name={'mnemo'} 
+                                    title={'Мнемоника'} 
+                                    type='text'/>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Наименование МФЦ </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Наименование МФЦ"  
-                                                name='name'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.name}
-                                                className={touched.name && errors.name ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.name} message={errors.name}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.name} 
+                                    touched={touched.name} 
+                                    errors={errors.name} 
+                                    name={'name'} 
+                                    title={'Наименование МФЦ'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Краткое наименование </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Краткое наименование" 
-                                                name='smallName'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.smallName}
-                                                className={touched.smallName && errors.smallName ? s.inputError : null}   
-                                            />
-                                            <ErrorsFormInput touched={touched.smallName} message={errors.smallName}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.number} 
+                                    touched={touched.number} 
+                                    errors={errors.number} 
+                                    name={'number'} 
+                                    title={'Номер филиала'} 
+                                    type='number'/>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Адрес </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Адрес" 
-                                                name='address'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.address}  
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.smallName} 
+                                    touched={touched.smallName} 
+                                    errors={errors.smallNamev} 
+                                    name={'smallName'} 
+                                    title={'Краткое наименование МФЦ'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Количество населния </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="number" 
-                                                placeholder="Количество населния в Н/П на МФЦ" 
-                                                name='countPopulation'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.countPopulation}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.address} 
+                                    touched={touched.address} 
+                                    errors={errors.address} 
+                                    name={'address'} 
+                                    title={'Адрес'} 
+                                    type='text'/> 
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.countPopulation} 
+                                    touched={touched.countPopulation} 
+                                    errors={errors.countPopulation} 
+                                    name={'countPopulation'} 
+                                    title={'Количество населния в Н/П на МФЦ'} 
+                                    type='text'/>  
 
                                 <Form.Group> 
                                     <Form.Row>
@@ -185,29 +143,21 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                                 maskChar=" " 
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.salary} 
+                                                value={values.phoneNumber} 
                                             /> 
                                         </Col>
                                     </Form.Row>
                                 </Form.Group> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Сайт </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Сайт" 
-                                                name='website'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.website}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.website} 
+                                    touched={touched.website} 
+                                    errors={errors.website} 
+                                    name={'website'} 
+                                    title={'Сайт'} 
+                                    type='text'/> 
 
                                 <h5>Почта</h5>
                                 <hr /> 
@@ -220,7 +170,7 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                         <Col sm="6">
                                             <Form.Control  
                                                 type="text" 
-                                                placeholder="Офицальный адрес почта" 
+                                                placeholder="Официальный адрес электронной почты" 
                                                 name='email'
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -230,80 +180,69 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                     </Form.Row>
                                 </Form.Group>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Логин </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Логин от почты для рассылок" 
-                                                name='emailLogin'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.emailLogin}  
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.emailLogin} 
+                                    touched={touched.emailLogin} 
+                                    errors={errors.emailLogin} 
+                                    name={'emailLogin'} 
+                                    title={'Логин от почты для рассылок'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Пароль </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Пароль от почты для рассылок" 
-                                                name='emailPassword'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.emailPassword} 
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.emailPassword} 
+                                    touched={touched.emailPassword} 
+                                    errors={errors.emailPassword} 
+                                    name={'emailPassword'} 
+                                    title={'Пароль от почты для рассылок'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Сервер </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Сервер почты для рассылок" 
-                                                name='emailServer'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.emailServer}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.emailServer} 
+                                    touched={touched.emailServer} 
+                                    errors={errors.emailServer} 
+                                    name={'emailServer'} 
+                                    title={'Сервер почты для рассылок'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Порт </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Порт почты для рассылок" 
-                                                name='emailPort'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.emailPort}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.emailPort} 
+                                    touched={touched.emailPort} 
+                                    errors={errors.emailPort} 
+                                    name={'emailPort'} 
+                                    title={'Порт почты для рассылок'} 
+                                    type='text'/>  
 
-                                <h5>Дополнительно</h5>
+                                <h5>Документы</h5>
                                 <hr />
+
+                                <Form.Group> 
+                                    <Form.Row>
+                                        <Col sm="5" className={s.labelCenter}>
+                                            <Form.Label> СНИЛС директора </Form.Label>
+                                        </Col>
+                                        <Col sm="6">
+                                            <InputMask 
+                                                type="text" 
+                                                placeholder="СНИЛС директора" 
+                                                name='esiaOperatorSnils'
+                                                className='form-control'
+                                                mask="9999999999999" 
+                                                maskChar=" "
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.esiaOperatorSnils} 
+                                            /> 
+                                        </Col>
+                                    </Form.Row>
+                                </Form.Group>
 
                                 <Form.Group> 
                                     <Form.Row>
@@ -410,99 +349,123 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                     </Form.Row>
                                 </Form.Group>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> СНИЛС директора </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <InputMask 
-                                                type="text" 
-                                                placeholder="СНИЛС директора" 
-                                                name='esiaOperatorSnils'
-                                                className='form-control'
-                                                mask="9999999999999" 
-                                                maskChar=" "
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.esiaOperatorSnils} 
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <h5>Данные для интеграции с разными службами</h5>
+                                <hr />
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.esiaCenttId} 
+                                    touched={touched.esiaCenttId} 
+                                    errors={errors.esiaCenttId} 
+                                    name={'esiaCenttId'} 
+                                    title={'Идентификатор центра регистрации'} 
+                                    type='text'/>
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.mdmUid} 
+                                    touched={touched.mdmUid} 
+                                    errors={errors.mdmUid} 
+                                    name={'mdmUid'} 
+                                    title={'Индефикатор МФЦ в системе МДМ'} 
+                                    type='text'/> 
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.minTrudRequestNumber} 
+                                    touched={touched.minTrudRequestNumber} 
+                                    errors={errors.minTrudRequestNumber} 
+                                    name={'minTrudRequestNumber'} 
+                                    title={'Номер запроса для интерграции с МинТрудом'} 
+                                    type='numder'/>
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.officeCikName} 
+                                    touched={touched.officeCikName} 
+                                    errors={errors.officeCikName} 
+                                    name={'officeCikName'} 
+                                    title={'Наименование МФЦ для ЦИК'} 
+                                    type='text'/>  
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.cikId} 
+                                    touched={touched.cikId} 
+                                    errors={errors.cikId} 
+                                    name={'cikId'} 
+                                    title={'Идентификатор МФЦ в ЦИК'} 
+                                    type='text'/> 
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.mfcEpgu} 
+                                    touched={touched.mfcEpgu} 
+                                    errors={errors.mfcEpgu} 
+                                    name={'mfcEpgu'} 
+                                    title={'Индефикатор МФЦ на ЕПГУ'} 
+                                    type='text'/>
+
+
+                                <h5>Дополнительно</h5>
+                                <hr />
+
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.vendorId} 
+                                    touched={touched.vendorId} 
+                                    errors={errors.vendorId} 
+                                    name={'vendorId'} 
+                                    title={'Номер филиала'} 
+                                    type='number'/> 
 
                                 <Form.Group> 
                                     <Form.Row>
                                         <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> ИАС МКГУ </Form.Label>
+                                            <Form.Label> Наличие начальника операторского зала </Form.Label>
                                         </Col>
                                         <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="ИАС МКГУ" 
-                                                name='ias'
+                                            <Form.Control 
+                                                name='isHeadOperatorHall'
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.ias}   
-                                            /> 
+                                                value={values.isHeadOperatorHall} 
+                                                as="select"
+                                            >
+                                                <option value={false}>Нет</option>
+                                                <option value={true}>Да</option>
+                                            </Form.Control>
                                         </Col>
                                     </Form.Row>
                                 </Form.Group>
+                                
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.callCenterServer} 
+                                    touched={touched.callCenterServer} 
+                                    errors={errors.callCenterServer} 
+                                    name={'callCenterServer'} 
+                                    title={'Сервер Call-центра'} 
+                                    type='text'/>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> ЕСИА центр </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="ЕСИА центр" 
-                                                name='esiaName'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.esiaName}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.quantityWindows} 
+                                    touched={touched.quantityWindows} 
+                                    errors={errors.quantityWindows} 
+                                    name={'quantityWindows'} 
+                                    title={'Количество окон'} 
+                                    type='text'/>   
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Сервер Call-центра </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Сервер Call-центра" 
-                                                name='callCenterServer'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.callCenterServer}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Количество окон </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Количество окон" 
-                                                name='quantityWindows'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.quantityWindows}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
- 
                                 <Form.Group> 
                                     <Form.Row>
                                         <Col sm="5" className={s.labelCenter}>
@@ -523,150 +486,65 @@ const PutOfficesForm = ({ id, onClose, putOffices }) => {
                                     </Form.Row>
                                 </Form.Group>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Индефикатор МФЦ в системе МДМ </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Индефикатор МФЦ в системе МДМ" 
-                                                name='mdmUid'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.mdmUid}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.geographicCoordination} 
+                                    touched={touched.geographicCoordination} 
+                                    errors={errors.geographicCoordination} 
+                                    name={'geographicCoordination'} 
+                                    title={'Географические координаты'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Индефикатор МФЦ на ЕПГУ </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Индефикатор МФЦ на ЕПГУ" 
-                                                name='mfcEpgu'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.mfcEpgu}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.skype} 
+                                    touched={touched.skype} 
+                                    errors={errors.skype} 
+                                    name={'geographicCoordination'} 
+                                    title={'Скайп'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Широта, долгота </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Широта, долгота" 
-                                                name='geographicCoordination'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.geographicCoordination}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.schedule} 
+                                    touched={touched.schedule} 
+                                    errors={errors.schedule} 
+                                    name={'schedule'} 
+                                    title={'График работы'} 
+                                    type='text'/> 
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Скайп </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Скайп" 
-                                                name='skype'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.skype}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.tosp} 
+                                    touched={touched.tosp} 
+                                    errors={errors.tosp} 
+                                    name={'tosp'} 
+                                    title={'Перечень ТОСПов'} 
+                                    type='text'/>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> График работы </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="График работы" 
-                                                name='schedule'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.schedule}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.convenience} 
+                                    touched={touched.convenience} 
+                                    errors={errors.convenience} 
+                                    name={'convenience'} 
+                                    title={'Удобства в  МФЦ'} 
+                                    type='text'/>
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Перечень ТОСПов </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Перечень ТОСПов" 
-                                                name='tosp'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.tosp}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Удобства в  МФЦ </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Удобства в  МФЦ" 
-                                                name='convenience'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.convenience}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
-
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Коментарий </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                as="textarea"
-                                                type="text" 
-                                                placeholder="Коментарий" 
-                                                name='convenience'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.comment}   
-                                            /> 
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.comment} 
+                                    touched={touched.comment} 
+                                    errors={errors.comment} 
+                                    name={'comment'} 
+                                    title={'Коментарий'} 
+                                    type='text'/>     
                             </Modal.Body> 
 
                             <Modal.Footer>  

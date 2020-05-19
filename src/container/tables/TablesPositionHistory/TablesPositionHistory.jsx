@@ -3,20 +3,20 @@ import {connect} from 'react-redux';
 import {getPositionHistory} from '../../../redux/getPositionHistory/actions';
 import Table from 'react-bootstrap/Table'
 
-//import Spiner from '../../../сomponent/Spiner';
-//import Error from '../../../сomponent/Error'; 
+import Spinner from '../../../component/Spinner';
+import Error from '../../../component/Error';
 import s from '../GlobalTables.module.scss'; 
 
 const TablesPositionHistory = ({ id, getPositionHistory, data, error, loading}) => {
 
-    useEffect(() => { getPositionHistory(id) },[getPositionHistory, id]); 
+    useEffect(() => { getPositionHistory(id) },[getPositionHistory, id]);  
     
-    //if(loading){
-    //    return <Spiner />
-    //}
-    //else(error){
-    //    return <Error />
-    //}
+    if(loading){
+        return <Spinner />
+    }
+    if(error){
+        return <Error />
+    }
 
     if(!data.length){ 
         return (

@@ -2,27 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';  
 
 import { getSalaries } from '../../../redux/getSalaries/actions';
-//import Spiner from '../../../сomponent/Spiner';
-//import Error from '../../../сomponent/Error'; 
+import Spinner from '../../../component/Spinner';
+import Error from '../../../component/Error'; 
 import ModalWindowForm from '../../../container/ModalWindowForm'; 
 import PostSalariesForm from '../../../component/form/salariesForm/PostSalariesForm';
 import TablesSalaries from '../../../component/tables/TablesSalaries'; 
 import SearchButton from '../../../component/SearchButton'; 
 
-const TabContentSalaries = ({salaries, loading, error, getSalaries }) => {
-
+const TabContentSalaries = ({salaries, loading, error, getSalaries }) => { 
     useEffect(() => { getSalaries() },[getSalaries]);
     const [showModalPostAddJobSalaries, setShowModalPostAddJobSalaries] = useState(false);
     const [searchText, setSearchText] = useState(null); //Текст поиска
     const [search, setSearch] = useState([]); //Массив обьектов удов совпад
     const [searchOn, setSearchOn] = useState(false); //Показать контент поиска
     
-    //if(loading){
-    //    return <Spiner />
-    //}
-    //else(error){
-    //    return <Error />
-    //}
+    if(loading){
+        return <Spinner />
+    }
+    if(error){
+        return <Error text={'Сервис не доступен в данный момент времени'}/>
+    }
     
     return (
         <> 
@@ -42,6 +41,7 @@ const TabContentSalaries = ({salaries, loading, error, getSalaries }) => {
             
             <ModalWindowForm 
                 show={showModalPostAddJobSalaries}
+                size='xl'
                 title='Добавление оклада к должности'
                 onClose={ () => setShowModalPostAddJobSalaries(false) }
                 body={

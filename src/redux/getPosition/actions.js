@@ -20,7 +20,7 @@ const getJobPositionError = (error) => ({
 
 //Запрос все должности
 const getJobPositionRequest = async () => {
-    return await axios.get(`jobPosition`)
+    return await axios.get(`JobPosition`)
     .then(response => response.data);
 };
 export const getJobPosition = () => (dispatch) => {

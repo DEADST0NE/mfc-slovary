@@ -20,7 +20,7 @@ const getExecutionHistoryError = (error) => ({
 
 //Запрос история исполнения
 const getExecutionHistoryRequest = async (id) => {
-    return await axios.get(`${id}/pa/executionHistory`)
+    return await axios.get(`PersonalArea/${id}/pa/executionHistory`)
     .then(response => response.data);
 };
 export const getExecutionHistory = (id) => (dispatch) => {

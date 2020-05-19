@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
 
+import InputGrupForm from '../../../InputGrupForm';
 import FormFileFotoUpload from '../../../../container/FormFileFotoUpload';
 import DatePickerField from '../../../../component/DatePickerField'; 
 import { postEmployees } from '../../../../redux/form/postEmployees/actions'; 
@@ -671,67 +672,37 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                         />
                                     </Col>
                                 </Form.Row>
-                            </Form.Group>
+                            </Form.Group> 
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Интенсивность </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="number"
-                                            placeholder="Интенсивность"
-                                            name='intensity'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.intensity}
-                                            className={touched.intensity && errors.intensity ? s.inputError : null} 
-                                        />
-                                        <ErrorsFormInput touched={touched.intensity} message={errors.intensity}/>
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.intensity} 
+                                    touched={touched.intensity} 
+                                    errors={errors.intensity} 
+                                    name={'intensity'} 
+                                    title={'Интенсивность'} 
+                                    type='number'/> 
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Ставка </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="number"
-                                            placeholder="Ставка"
-                                            name='rate'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.rate}
-                                            className={touched.rate && errors.rate ? s.inputError : null} 
-                                        />
-                                        <ErrorsFormInput touched={touched.rate} message={errors.rate}/>
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.rate} 
+                                    touched={touched.rate} 
+                                    errors={errors.rate} 
+                                    name={'rate'} 
+                                    title={'Ставка'} 
+                                    type='number'/> 
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> ФИО сотудника добавивший записть </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="ФИО сотудника добавивший записть"
-                                            name='employeeFioAdd'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.employeeFioAdd}
-                                            className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null} 
-                                        />
-                                        <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.employeeFioAdd} 
+                                    touched={touched.employeeFioAdd} 
+                                    errors={errors.employeeFioAdd} 
+                                    name={'employeeFioAdd'} 
+                                    title={'ФИО сотудника добавивший записть'} 
+                                    type='text'/> 
                             
                         </Modal.Body>
 

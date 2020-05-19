@@ -20,7 +20,7 @@ const getPositionHistoryError = (error) => ({
 
 //Запрос история должности
 const getPositionHistoryRequest = async (id) => {
-    return await axios.get(`${id}/jobPositionHistory`)
+    return await axios.get(`PersonalArea/${id}/jobPositionHistory`)
     .then(response => response.data);
 };
 export const getPositionHistory = (id) => (dispatch) => {

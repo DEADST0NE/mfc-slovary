@@ -20,7 +20,7 @@ const getCombinationHistoryError = (error) => ({
 
 //Запрос история исполнения
 const getCombinationHistoryRequest = async (id) => {
-    return await axios.get(`${id}/pa/activeHistory`)
+    return await axios.get(`PersonalArea/${id}/pa/activeHistory`)
     .then(response => response.data);
 };
 export const getCombinationHistory = (id) => (dispatch) => {

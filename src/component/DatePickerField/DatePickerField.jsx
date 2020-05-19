@@ -13,9 +13,10 @@ const DatePickerField = ({ ...props }) => {
             locale={ru}
             placeholderText='дд.мм.гггг'
             dateFormat="dd.MM.yyyy"
-            selected={(field.value && new Date(field.value)) || null}
-            onChange={val => {
-                setFieldValue(field.name, val);
+            selected={(field.value && new Date(field.value)) || ''}
+            onChange={val => { 
+                let data = new Date(Date.parse(val)).toLocaleDateString(); 
+                setFieldValue(field.name, data);
             }}
         />
     );

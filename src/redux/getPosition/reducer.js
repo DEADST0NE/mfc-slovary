@@ -5,21 +5,71 @@ import {
 } from '../constActions';
 
 const initialState = {
-    data: [
+data: [
         {
-            "id": 1,
-            "name": "Оператор",
-            "comment": ''
+            "id": 16,
+            "name": "Тестировщик",
+            "comment": "тестирует ПО"
         },
         {
-            "id": 2,
+            "id": 12,
+            "name": "Дизайнер",
+            "comment": "рисует макеты"
+        },
+        {
+            "id": 15,
+            "name": "Программист",
+            "comment": "разрабатывает ПО"
+        },
+        {
+            "id": 14,
+            "name": "Системный администратор",
+            "comment": "настраивает сети"
+        },
+        {
+            "id": 9,
+            "name": "Специалист",
+            "comment": "разбирается в узкой области"
+        },
+        {
+            "id": 18,
+            "name": "Маркетолог",
+            "comment": "продает продукт"
+        },
+        {
+            "id": 19,
+            "name": "Верстальщик",
+            "comment": "верстает страницы"
+        },
+        {
+            "id": 20,
+            "name": "Контент-менеджер",
+            "comment": "добавляет контент"
+        },
+        {
+            "id": 13,
+            "name": "Сеньор-помидор",
+            "comment": "руководит процессом разработки ПО"
+        },
+        {
+            "id": 11,
+            "name": "Администратор",
+            "comment": "администрирует"
+        },
+        {
+            "id": 10,
             "name": "Курьер",
-            "comment": ''
+            "comment": "доставляет посылки"
         },
         {
-            "id": 7,
-            "name": "Редактирование должности",
-            "comment": "Редактирование комментария к новой тестовой должности"
+            "id": 21,
+            "name": "tesst",
+            "comment": null
+        },
+        {
+            "id": 17,
+            "name": "Директор",
+            "comment": "руководит сотрудниками"
         }
     ],
     loading: true,
@@ -45,7 +95,7 @@ const reducerGetPosition = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: true
+                error: true,
             } 
         default: 
             return state;
