@@ -39,7 +39,7 @@ const validationSchema = Yup.object().shape({
     }),
 })
 
-const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => { 
+const postEmployeesForm = ({ onClose, postEmployees, offices, positions, foto }) => { 
     return (
         <Formik
             initialValues={{
@@ -59,6 +59,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                 },
                 phoneNumber: '',
                 email: '',
+                foto: '',
                 snils: '',
                 inn: '',
                 login: '',
@@ -66,10 +67,10 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                 passwordHelp: '',
                 personalNumber: '',
                 certificateNumber: '',
-                officeId: '',
+                officeId: offices[0].id,
                 dateStart: '',
                 dateStop: '',
-                jobPositionId: '',
+                jobPositionId: positions[0].id,
                 statusId: '',
                 statusDateStart: '',
                 statusDateStop: '',
@@ -84,6 +85,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
                 console.log(values);
+                values.foto = foto;
                 postEmployees(values);
             }}
         >
@@ -492,6 +494,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
                                         <Form.Label> Oфис </Form.Label>
                                     </Col>
                                     <Col sm="6">
+
                                             <Form.Control  
                                                 name="officeId"
                                                 value={values.officeId}
@@ -722,6 +725,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions }) => {
 const mapStateToProps = (state) => ({
     offices: state.getOffices.data,
     positions: state.getPosition.data,
+    foto: state.fotoFile.file,
 })
 
 const mapDispatchToProps = {

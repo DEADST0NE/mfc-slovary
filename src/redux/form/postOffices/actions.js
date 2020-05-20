@@ -1,6 +1,7 @@
 import axios from '../../../api';
 import { formRequested, formSuccess, formError } from '../actions';
 import {getOffices} from '../../getOffices/actions';
+import {formDataAppend} from '../../../utils/formDataAppend';
 
 //Запрос на добавление филиала
     const postOfficesRequest = async ( object ) => {
@@ -10,7 +11,7 @@ import {getOffices} from '../../getOffices/actions';
     export const postOffices = (object) => (dispatch) => { 
         setTimeout( () => { dispatch( getOffices() )}, 5000 );//Обновляем список филиалов 
         let formdata = new FormData(); 
-        Object.keys(object).forEach(item => formdata.append(item, object[item])); // Переводим объект в форм дату
+        formDataAppend(formdata, object); 
         dispatch( formRequested() );
         postOfficesRequest(formdata)
             .then( () => dispatch( formSuccess() ))

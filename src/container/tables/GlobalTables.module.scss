@@ -36,6 +36,12 @@
     } 
 }
 
+@media screen and (max-height: 600px){
+    .tablePersonalArea{
+        max-height: 450px;
+    }
+}
+
 .noneData{  
     padding: 10px;
     border-radius: 5px;

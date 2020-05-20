@@ -144,8 +144,10 @@ const PostSalariesForm = ({ onClose, postSalaries, position }) => {
                                         <Col sm="6">
                                             <DatePickerField
                                                 name="dateStart"
+                                                handleChange={handleChange} 
                                                 value={values.dateStart}
                                                 onChange={setFieldValue}
+                                                handleBlur={handleBlur} 
                                                 className={`form-control ${touched.dateStart && errors.dateStart ? s.inputError : ''}`} 
                                             />  
                                             <ErrorsFormInput touched={touched.dateStart} message={errors.dateStart}/>

@@ -1,14 +1,12 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';   
-import { Col } from 'react-bootstrap';
+import React from 'react'; 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Formik } from 'formik'; 
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import { postPosition } from '../../../../redux/form/postPosition/actions';
-import ErrorsFormInput from '../../../../component/ErrorsFormInput';
+import InputGrupForm from '../../../InputGrupForm';
+import { postPosition } from '../../../../redux/form/postPosition/actions'; 
 import s from '../../GlobalForm.module.scss';
 
 const validationSchema = Yup.object().shape({
@@ -43,67 +41,36 @@ const PostPositionsForm = ({ onClose, postPosition }) => {
                 {
                     return(
                         <form onSubmit={ handleSubmit } className={s.forms}>
-                            <Modal.Body> 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Наименование должности </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control 
-                                                type="text" 
-                                                placeholder="Наименование должности"  
-                                                name='name' 
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.name}
-                                                className={touched.name && errors.name ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.name} message={errors.name}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                            <Modal.Body>   
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.name} 
+                                    touched={touched.name} 
+                                    errors={errors.name} 
+                                    name={'name'} 
+                                    title={'Наименование должности'} 
+                                    type='text'/>  
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Комментарий </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Комментарий"  
-                                                name='comment'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.comment}
-                                                className={touched.comment && errors.comment ? s.inputError : null} 
-                                            />
-                                            <ErrorsFormInput touched={touched.comment} message={errors.comment}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.comment} 
+                                    touched={touched.comment} 
+                                    errors={errors.comment} 
+                                    name={'comment'} 
+                                    title={'Комментарий'} 
+                                    type='text'/>  
 
-                                <Form.Group> 
-                                    <Form.Row>
-                                        <Col sm="5" className={s.labelCenter}>
-                                            <Form.Label> Сотрудник добавивщий запись </Form.Label>
-                                        </Col>
-                                        <Col sm="6">
-                                            <Form.Control  
-                                                type="text" 
-                                                placeholder="Сотрудник добавивщий запись" 
-                                                name='employeeFioAdd'
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.employeeFioAdd}
-                                                className={touched.employeeFioAdd && errors.employeeFioAdd ? s.inputError : null}   
-                                            />
-                                            <ErrorsFormInput touched={touched.employeeFioAdd} message={errors.employeeFioAdd}/>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group> 
-
+                                <InputGrupForm 
+                                    handleChange={handleChange} 
+                                    handleBlur={handleBlur} 
+                                    valueInput={values.employeeFioAdd} 
+                                    touched={touched.employeeFioAdd} 
+                                    errors={errors.employeeFioAdd} 
+                                    name={'employeeFioAdd'} 
+                                    title={'Сотрудник добавивщий запись'} 
+                                    type='text'/>  
                             </Modal.Body> 
 
                             <Modal.Footer>  

@@ -8,6 +8,7 @@ import { Formik, getIn } from 'formik';
 import InputMask from 'react-input-mask';
 import * as Yup from 'yup';
 
+import InputGrupForm from '../../../InputGrupForm';
 import { putEmployees } from '../../../../redux/form/putEmployees/actions';
 import FormFileFotoUpload from '../../../../container/FormFileFotoUpload';
 import DatePickerField from '../../../../component/DatePickerField'; 
@@ -22,7 +23,7 @@ const validationSchema = Yup.object().shape({
     }),
 })
 
-const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
+const PutEmployeesForm = ({ id, object, onClose, putEmployees, foto }) => {
 
     return (
         <Formik
@@ -31,6 +32,7 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
                 console.log(values);
+                values.foto = foto;
                 putEmployees(values, id);
             }}
         >
@@ -173,25 +175,15 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
                                 </Form.Row>
                             </Form.Group>
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Адрес электронной почты </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Адрес электронной почты"
-                                            name='email'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.email}
-                                            className={touched.email && errors.email ? s.inputError : null}   
-                                        />
-                                        <ErrorsFormInput touched={touched.email} message={errors.email}/>
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                handleChange={handleChange} 
+                                handleBlur={handleBlur} 
+                                valueInput={values.email} 
+                                touched={touched.email} 
+                                errors={errors.email} 
+                                name={'email'} 
+                                title={'Адрес электронной почты'} 
+                                type='text'/> 
 
                             <h5 className='normalText'>Пастортные данные сотрудника</h5>
                             <hr />
@@ -334,79 +326,47 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
                             </Form.Group>
 
                             <h5 className='normalText'>Данные доступа сотрудника к работе</h5>
-                            <hr />
+                            <hr />  
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Пароль для в входа в АИС </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Пароль для в входа в АИС"
-                                            name='password'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.password} 
-                                        /> 
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                handleChange={handleChange} 
+                                handleBlur={handleBlur} 
+                                valueInput={values.password} 
+                                touched={touched.password} 
+                                errors={errors.password} 
+                                name={'password'} 
+                                title={'Пароль для в входа в АИС'} 
+                                type='text'/>
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Подсказка к паролю </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Подсказка к паролю"
-                                            name='passwordHelp'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.passwordHelp}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                handleChange={handleChange} 
+                                handleBlur={handleBlur} 
+                                valueInput={values.passwordHelp} 
+                                touched={touched.passwordHelp} 
+                                errors={errors.passwordHelp} 
+                                name={'passwordHelp'} 
+                                title={'Подсказка к паролю'} 
+                                type='text'/>
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Табельный номер </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Табельный номер"
-                                            name='personalNumber'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.personalNumber}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                handleChange={handleChange} 
+                                handleBlur={handleBlur} 
+                                valueInput={values.personalNumber} 
+                                touched={touched.personalNumber} 
+                                errors={errors.personalNumber} 
+                                name={'personalNumber'} 
+                                title={'Табельный номер'} 
+                                type='text'/> 
 
-                            <Form.Group>
-                                <Form.Row>
-                                    <Col sm="5" className={s.labelCenter}>
-                                        <Form.Label> Серийный номер ЭЦП сертификата </Form.Label>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Серийный номер ЭЦП сертификата"
-                                            name='certificateNumber'
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.certificateNumber}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                            </Form.Group>
+                            <InputGrupForm 
+                                handleChange={handleChange} 
+                                handleBlur={handleBlur} 
+                                valueInput={values.certificateNumber} 
+                                touched={touched.certificateNumber} 
+                                errors={errors.certificateNumber} 
+                                name={'certificateNumber'} 
+                                title={'Серийный номер ЭЦП сертификата'} 
+                                type='text'/> 
                             
                         </Modal.Body>
 
@@ -421,9 +381,12 @@ const PutEmployeesForm = ({ id, object, onClose, putEmployees }) => {
         </Formik>
     )
 }
+const mapStateToProps = (state) => ({
+    foto: state.fotoFile.file,
+})
 
 const mapDispatchToProps = {
     putEmployees,
 }
 
-export default connect( ()=>({}), mapDispatchToProps)(PutEmployeesForm);
+export default connect( mapStateToProps, mapDispatchToProps)(PutEmployeesForm);

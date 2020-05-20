@@ -21,7 +21,7 @@ const InputGrupForm = ({handleChange, handleBlur, valueInput, touched, errors, n
                         onBlur={handleBlur}
                         value={valueInput}
                         className={touched && errors ? s.inputError : null} 
-                    />
+                    /> 
                     <ErrorsFormInput touched={touched} message={errors}/>
                 </Col>
             </Form.Row>
