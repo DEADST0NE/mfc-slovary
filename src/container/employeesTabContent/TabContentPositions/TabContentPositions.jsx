@@ -17,12 +17,12 @@ const TabContentPositions = ({ getJobPosition, position, loading, error, postJob
     const [searchOn, setSearchOn] = useState(false); //Показать контент поиска
     useEffect(() => { getJobPosition() },[getJobPosition]);
         
-    //if(loading){
-    //    return <Spinner />
-    //} 
-    //if(error){
-    //    return <Error text={'Сервис не доступен в данный момент времени'}/>
-    //}
+    if(loading){
+        return <Spinner />
+    } 
+    if(error){
+        return <Error text={'Сервис не доступен в данный момент времени'}/>
+    }
 
     return ( 
     <> 
