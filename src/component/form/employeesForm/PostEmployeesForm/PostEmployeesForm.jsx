@@ -517,7 +517,8 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions, foto })
                                     </Col>
                                     <Col sm="6">
                                         <DatePickerField
-                                            name="dateStart"
+                                            minDate={new Date()}
+                                            name="dateStart" 
                                             value={values.dateStart}
                                             onChange={setFieldValue}
                                             className={`form-control ${touched.dateStart && errors.dateStart ? s.inputError : ''}`}
@@ -534,6 +535,7 @@ const postEmployeesForm = ({ onClose, postEmployees, offices, positions, foto })
                                     </Col>
                                     <Col sm="6">
                                         <DatePickerField
+                                            minDate={new Date()}
                                             name="dateStop"
                                             value={values.dateStop}
                                             onChange={setFieldValue}

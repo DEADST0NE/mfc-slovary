@@ -9,6 +9,5 @@ export const filter = (mass, nameObject, boolSort, setBoolSort) =>{//сорти�
         else 
             return boolSort ? -1 : 1
     })
-    setBoolSort(!boolSort);
-    console.log(mass)
+    setBoolSort(!boolSort); 
 }
