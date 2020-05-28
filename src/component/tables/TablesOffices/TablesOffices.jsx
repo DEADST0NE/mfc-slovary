@@ -1,6 +1,6 @@
 import React, {useState} from 'react'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faEye, faTrash } from '@fortawesome/free-solid-svg-icons'; 
+import { faSort, faEye, faTrash } from '@fortawesome/free-solid-svg-icons'; 
 import Table from 'react-bootstrap/Table'
 
 import ConfirmationsForm from '../../form/ConfirmationsForm';
@@ -28,13 +28,11 @@ const TablesOffices = ({ mass }) => {
                 <thead>
                     <tr>
                         <td>Мнемоника</td>
-                        <td>Филиал 
-                            <FontAwesomeIcon 
-                            onClick={ ()=>{ filter(mass, 'name', sortUpDown, setSortUpDown) } } icon={ faFilter } />
+                        <td>Филиал  <FontAwesomeIcon 
+                                    onClick={ ()=>{ filter(mass, 'name', sortUpDown, setSortUpDown) } } icon={ faSort } />
                         </td> 
-                        <td>Адрес 
-                            <FontAwesomeIcon 
-                            onClick={ ()=>{ console.log('Error в обьекте нет поля') } } icon={ faFilter } />
+                        <td>Адрес  <FontAwesomeIcon 
+                                    onClick={ ()=>{ console.log('Error в обьекте нет поля') } } icon={ faSort } />
                         </td>
                         <td>Действия</td>
                     </tr>

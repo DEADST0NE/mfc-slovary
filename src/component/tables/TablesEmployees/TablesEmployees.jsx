@@ -1,6 +1,6 @@
 import React, {useState} from 'react';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faPlay, faPause, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSort, faPlay, faPause, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table'
 
@@ -20,9 +20,9 @@ const TablesEmployees = ({ mass, loading, error, foto }) => {
             <Table responsive="xl" striped bordered>  
                 <thead>
                     <tr>
-                        <td>Филиалы <FontAwesomeIcon icon={ faFilter } onClick={ () => {  filter(mass, 'officeName', sortUpDown, setSortUpDown) } }/></td>
-                        <td>Сотрудники <FontAwesomeIcon icon={ faFilter } onClick={ () => {  filter(mass, 'employeeName', sortUpDown, setSortUpDown) } }/></td> 
-                        <td>Дожности <FontAwesomeIcon icon={ faFilter } onClick={ () => {  filter(mass, 'employeeJobPositionName', sortUpDown, setSortUpDown) } }/></td>
+                        <td>Филиалы <FontAwesomeIcon icon={ faSort } onClick={ () => {  filter(mass, 'officeName', sortUpDown, setSortUpDown) } }/></td>
+                        <td>Сотрудники <FontAwesomeIcon icon={ faSort } onClick={ () => {  filter(mass, 'employeeName', sortUpDown, setSortUpDown) } }/></td> 
+                        <td>Дожности <FontAwesomeIcon icon={ faSort } onClick={ () => {  filter(mass, 'employeeJobPositionName', sortUpDown, setSortUpDown) } }/></td>
                         <td>Статус</td> 
                         <td>Активность</td>
                         <td>Действия</td>

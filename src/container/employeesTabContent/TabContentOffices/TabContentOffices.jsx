@@ -16,12 +16,12 @@ const TabContentOffices = ({ getOffices, offices, loading, error }) => {
     const [searchOn, setSearchOn] = useState(false); //Показать контент поиска
     const [ showModalPostOffices, setShowModalPostOffices ] = useState(false); //Индикатор отображения модального окна
     
-    if(loading){
-        return <Spinner />
-    } 
-    if(error){
-        return <Error text={'Сервис не доступен в данный момент времени'}/>
-    }
+    //if(loading){
+    //   return <Spinner />
+    //} 
+    //if(error){
+    //    return <Error text={'Сервис не доступен в данный момент времени'}/>
+    //}
 
     return(
         <> 

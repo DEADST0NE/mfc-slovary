@@ -19,25 +19,27 @@
         }
     }
     thead{ 
-        td{  
-            cursor: default; 
-            font-weight: 500;
-            font-size: 25px;
-            height: 75px; 
-            font-family: 'Roboto', sans-serif; 
-            position: sticky;
-            position: -webkit-sticky;
-            top: 0; 
-            background-color: #fff; 
-            svg{
-                cursor: pointer;
-                color: #ddd;
-                transition: all 0.3s ease;
-                &:hover{
-                    color: #d3531a;
+        tr{
+            td{  
+                cursor: default; 
+                font-weight: 500;
+                font-size: 25px;
+                height: 75px; 
+                font-family: 'Roboto', sans-serif; 
+                position: sticky;
+                position: -webkit-sticky;
+                top: 0; 
+                background-color: #fff; 
+                svg{
+                    cursor: pointer;
+                    color: #ddd;
+                    transition: all 0.3s ease;
+                    &:hover{
+                        color: #d3531a;
+                    }
                 }
-            }
-        }
+            } 
+        } 
     }
     tbody{ 
         tr{
